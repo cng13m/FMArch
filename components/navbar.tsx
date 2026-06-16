@@ -6,7 +6,6 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import ThemeToggle from "./theme-toggle"
-import AuthStatus from "./auth-status"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -59,12 +58,10 @@ export default function Navbar() {
               </Link>
             ))}
             <ThemeToggle />
-            <AuthStatus />
           </div>
 
           <div className="flex items-center gap-4 md:hidden">
             <ThemeToggle />
-            <AuthStatus />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 transition-opacity hover:opacity-70"
