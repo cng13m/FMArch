@@ -19,6 +19,21 @@ export interface Project {
   display_order?: number
 }
 
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+}
+
+function withSlugFallback(project: Project): Project {
+  return {
+    ...project,
+    slug: project.slug?.trim() || slugify(project.title),
+  }
+}
+
 export async function getProjects() {
   // Return empty array if Supabase is not configured
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')) {
@@ -31,7 +46,7 @@ export async function getProjects() {
     .order('display_order', { ascending: true })
 
   if (error) throw error
-  return data || []
+  return (data || []).map(withSlugFallback)
 }
 
 export async function getProject(slug: string) {
@@ -44,22 +59,24 @@ export async function getProject(slug: string) {
     .from('projects')
     .select('*')
     .eq('slug', slug)
-    .single()
+    .maybeSingle()
 
   if (error) throw error
-  return data
+  if (data) return withSlugFallback(data)
+
+  const { data: projects, error: projectsError } = await supabaseAdmin
+    .from('projects')
+    .select('*')
+
+  if (projectsError) throw projectsError
+
+  return (projects || []).map(withSlugFallback).find((project) => project.slug === slug) || null
 }
 
 export async function createProject(project: Project) {
   await requireAuth()
 
-  // Generate slug if not provided
-  if (!project.slug) {
-    project.slug = project.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '')
-  }
+  project.slug = project.slug?.trim() || slugify(project.title)
 
   // Get max display_order
   const { data: projects } = await supabaseAdmin
@@ -86,9 +103,17 @@ export async function createProject(project: Project) {
 export async function updateProject(id: string, project: Partial<Project>) {
   await requireAuth()
 
+  const projectUpdate = {
+    ...project,
+    slug: project.slug?.trim() || (project.title ? slugify(project.title) : undefined),
+    updated_at: new Date().toISOString(),
+  }
+
+  if (!projectUpdate.slug) delete projectUpdate.slug
+
   const { data, error } = await supabaseAdmin
     .from('projects')
-    .update({ ...project, updated_at: new Date().toISOString() })
+    .update(projectUpdate)
     .eq('id', id)
     .select()
     .single()

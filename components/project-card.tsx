@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
   title: string
-  slug: string
+  slug?: string
   year: string
   location: string
   coverImage?: string
@@ -27,6 +27,13 @@ export default function ProjectCard({
   index = 0,
 }: ProjectCardProps) {
   const imageSrc = coverImage || cover_image || "/placeholder.svg"
+  const projectSlug =
+    slug?.trim() ||
+    title
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
   const [isVisible, setIsVisible] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -51,7 +58,7 @@ export default function ProjectCard({
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <Link href={`/projects/${slug}`}>
+      <Link href={`/projects/${projectSlug}`}>
         <div
           className="relative aspect-[4/3] overflow-hidden bg-muted"
           onMouseEnter={() => setIsHovered(true)}
