@@ -1,0 +1,29 @@
+{
+  "homeHeroText": "Architectural Vision & Design",
+  "homeSubText": "Portfolio of Fjolle Murtezi",
+  "aboutText": "Fjolle Murtezi – architect focused on sustainable architecture, interior design, and architectural visualization.",
+  "homeHeroImage": "/modern-architecture-building-facade-minimalist-bla.jpg",
+  "homeAboutImage": "/architect-working-on-blueprints-studio.jpg",
+  "aboutImage": "/architect-working-on-blueprints-studio.jpg",
+  "services": [
+    {
+      "number": "01",
+      "title": "Architectural Design",
+      "description": "Complete architectural solutions from concept to construction, with a focus on sustainable and innovative design."
+    },
+    {
+      "number": "02",
+      "title": "Interior Design",
+      "description": "Creating harmonious interior spaces that reflect your personality while maximizing functionality and comfort."
+    },
+    {
+      "number": "03",
+      "title": "3D Visualization",
+      "description": "Photorealistic renderings and animations that bring your project to life before construction begins."
+    }
+  ],
+  "contact": {
+    "name": "Fjolle Murtezi",
+    "email": "fjollemurtezi123@gmail.com"
+  }
+}

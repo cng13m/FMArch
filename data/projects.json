@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Modern Villa",
+    "slug": "modern-villa",
+    "year": "2024",
+    "location": "Prishtina, Kosovo",
+    "coverImage": "/placeholder.svg?height=800&width=1200",
+    "gallery": [
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200"
+    ],
+    "description": "A minimalist villa focused on sustainability and natural lighting. The design emphasizes clean lines, open spaces, and a harmonious connection between indoor and outdoor environments.",
+    "category": "Residential"
+  },
+  {
+    "title": "Urban Loft Renovation",
+    "slug": "urban-loft-renovation",
+    "year": "2023",
+    "location": "Berlin, Germany",
+    "coverImage": "/placeholder.svg?height=800&width=1200",
+    "gallery": [
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200"
+    ],
+    "description": "A complete renovation of a historic industrial space, transforming it into a contemporary urban dwelling while preserving its original character and industrial heritage.",
+    "category": "Renovation"
+  },
+  {
+    "title": "Coastal Retreat",
+    "slug": "coastal-retreat",
+    "year": "2023",
+    "location": "Dubrovnik, Croatia",
+    "coverImage": "/placeholder.svg?height=800&width=1200",
+    "gallery": [
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200"
+    ],
+    "description": "A stunning coastal residence designed to maximize panoramic sea views while providing shelter from the Mediterranean sun. Natural materials blend seamlessly with the surrounding landscape.",
+    "category": "Residential"
+  },
+  {
+    "title": "Sustainable Office Complex",
+    "slug": "sustainable-office-complex",
+    "year": "2022",
+    "location": "Vienna, Austria",
+    "coverImage": "/placeholder.svg?height=800&width=1200",
+    "gallery": [
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200"
+    ],
+    "description": "A LEED Platinum certified office complex featuring green roofs, solar panels, and innovative passive cooling systems. The design prioritizes employee well-being and environmental responsibility.",
+    "category": "Commercial"
+  },
+  {
+    "title": "Mountain Cabin",
+    "slug": "mountain-cabin",
+    "year": "2022",
+    "location": "Swiss Alps, Switzerland",
+    "coverImage": "/placeholder.svg?height=800&width=1200",
+    "gallery": [
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200"
+    ],
+    "description": "A contemporary interpretation of traditional alpine architecture, this cabin combines local timber with modern design principles to create a warm, inviting retreat in the mountains.",
+    "category": "Residential"
+  },
+  {
+    "title": "Art Gallery Extension",
+    "slug": "art-gallery-extension",
+    "year": "2021",
+    "location": "Ljubljana, Slovenia",
+    "coverImage": "/placeholder.svg?height=800&width=1200",
+    "gallery": [
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200"
+    ],
+    "description": "A sensitive extension to a historic art gallery, creating new exhibition spaces that complement the existing building while introducing contemporary architectural elements.",
+    "category": "Cultural"
+  }
+]
