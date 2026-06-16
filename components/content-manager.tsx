@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Save } from 'lucide-react'
 import { toast } from 'sonner'
 import { getContent, updateContent } from '@/app/actions/content'
-import { uploadImage } from '@/app/actions/upload'
+import { uploadImageFile } from '@/lib/image-upload'
 
 export default function ContentManager() {
   const [content, setContent] = useState<Record<string, string>>({})
@@ -122,7 +122,7 @@ export default function ContentManager() {
                 if (!file) return
                 setUploadingImage(true)
                 try {
-                  const url = await uploadImage(file, 'content')
+                  const url = await uploadImageFile(file, 'content')
                   await handleSave('homeHeroImage', url)
                   toast.success('Image uploaded successfully')
                 } catch (err) {
@@ -163,7 +163,7 @@ export default function ContentManager() {
                 if (!file) return
                 setUploadingImage(true)
                 try {
-                  const url = await uploadImage(file, 'content')
+                  const url = await uploadImageFile(file, 'content')
                   await handleSave('homeAboutImage', url)
                   toast.success('Image uploaded successfully')
                 } catch (err) {
@@ -256,7 +256,7 @@ export default function ContentManager() {
                 if (!file) return
                 setUploadingImage(true)
                 try {
-                  const url = await uploadImage(file, 'content')
+                  const url = await uploadImageFile(file, 'content')
                   await handleSave('aboutImage', url)
                   toast.success('Image uploaded successfully')
                 } catch (err) {

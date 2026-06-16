@@ -31,7 +31,7 @@ import {
   reorderProjects,
   type Project,
 } from '@/app/actions/projects'
-import { uploadImage } from '@/app/actions/upload'
+import { uploadImageFile } from '@/lib/image-upload'
 import Image from 'next/image'
 
 export default function ProjectsManager() {
@@ -101,7 +101,7 @@ export default function ProjectsManager() {
   async function handleImageUpload(field: 'cover_image' | 'gallery', file: File) {
     setUploading(true)
     try {
-      const url = await uploadImage(file)
+      const url = await uploadImageFile(file)
       if (field === 'cover_image') {
         setFormData({ ...formData, cover_image: url })
       } else {
