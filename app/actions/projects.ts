@@ -49,16 +49,25 @@ export async function getProjects() {
   return (data || []).map(withSlugFallback)
 }
 
-export async function getProject(slug: string) {
+export async function getProject(identifier: string) {
   // Return null if Supabase is not configured
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')) {
     return null
   }
 
+  const { data: projectById, error: idError } = await supabaseAdmin
+    .from('projects')
+    .select('*')
+    .eq('id', identifier)
+    .maybeSingle()
+
+  if (idError) throw idError
+  if (projectById) return withSlugFallback(projectById)
+
   const { data, error } = await supabaseAdmin
     .from('projects')
     .select('*')
-    .eq('slug', slug)
+    .eq('slug', identifier)
     .maybeSingle()
 
   if (error) throw error
@@ -70,7 +79,11 @@ export async function getProject(slug: string) {
 
   if (projectsError) throw projectsError
 
-  return (projects || []).map(withSlugFallback).find((project) => project.slug === slug) || null
+  return (
+    (projects || [])
+      .map(withSlugFallback)
+      .find((project) => project.id === identifier || project.slug === identifier) || null
+  )
 }
 
 export async function createProject(project: Project) {

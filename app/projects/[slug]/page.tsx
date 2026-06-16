@@ -13,7 +13,7 @@ interface ProjectPageProps {
 
 export async function generateStaticParams() {
   const projects = await getProjects()
-  return projects.map((project) => ({ slug: project.slug }))
+  return projects.map((project) => ({ slug: project.id || project.slug }))
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
@@ -42,7 +42,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) notFound()
 
   const projects = await getProjects()
-  const currentIndex = projects.findIndex((p) => p.slug === slug)
+  const currentIndex = projects.findIndex((p) => p.id === slug || p.slug === slug)
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null
   const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null
 
@@ -125,7 +125,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="mx-auto max-w-5xl">
           <div className="flex justify-between items-center">
             {prevProject ? (
-              <Link href={`/projects/${prevProject.slug}`} className="group">
+              <Link href={`/projects/${prevProject.id || prevProject.slug}`} className="group">
                 <span className="text-xs tracking-[0.2em] uppercase text-muted-foreground block mb-2">
                   Previous Project
                 </span>
@@ -138,7 +138,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             )}
 
             {nextProject ? (
-              <Link href={`/projects/${nextProject.slug}`} className="group text-right">
+              <Link href={`/projects/${nextProject.id || nextProject.slug}`} className="group text-right">
                 <span className="text-xs tracking-[0.2em] uppercase text-muted-foreground block mb-2">
                   Next Project
                 </span>

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
+  id?: string
   title: string
   slug?: string
   year: string
@@ -17,6 +18,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({
+  id,
   title,
   slug,
   year,
@@ -27,7 +29,8 @@ export default function ProjectCard({
   index = 0,
 }: ProjectCardProps) {
   const imageSrc = coverImage || cover_image || "/placeholder.svg"
-  const projectSlug =
+  const projectIdentifier =
+    id ||
     slug?.trim() ||
     title
       .toLowerCase()
@@ -58,7 +61,7 @@ export default function ProjectCard({
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <Link href={`/projects/${projectSlug}`}>
+      <Link href={`/projects/${projectIdentifier}`}>
         <div
           className="relative aspect-[4/3] overflow-hidden bg-muted"
           onMouseEnter={() => setIsHovered(true)}
